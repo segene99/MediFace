@@ -1,0 +1,82 @@
+/* .headerbackground {
+  background-color: #37a8d9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mediface {
+  color: white;
+}
+
+.addcare {
+  background-color: #a3e0fa;
+  border-style: none;
+  border-radius: 5px;
+  width: 80%;
+  height: 100%;
+}
+
+.Capturebtn {
+  background-color: #a3e0fa;
+  width: 7%;
+  height: 10%;
+  border-style: none;
+  border-radius: 5px;
+}
+
+.video-container {
+  margin-top: 100px;
+  text-align: center;
+} */
+
+.headerbackground {
+  background-color: #37a8d9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px; /* 헤더 영역에 좀 더 간격 추가 */
+}
+
+.mediface {
+  color: white;
+  font-size: 24px; /* 글꼴 크기 조절 */
+}
+
+.addcare {
+  background-color: #a3e0fa;
+  border-style: none;
+  border-radius: 5px;
+  width: 80%;
+  height: 40px; /* 버튼 높이 조절 */
+  margin-top: 20px; /* 버튼 위 간격 조절 */
+}
+
+.Capturebtn {
+  background-color: #a3e0fa;
+  border-style: none;
+  border-radius: 5px;
+  padding: 10px 20px; /* 버튼 내용 안쪽 간격 조절 */
+  margin-top: 40px; /* 버튼 위 간격 조절 */
+  width: 150px;
+  height: 60px;
+  margin-left: 45%;
+}
+.video-container {
+  margin-top: 80px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 미디어 쿼리 추가 */
+@media screen and (max-width: 600px) {
+  .addcare {
+    width: 100%; /* 작은 화면에서는 버튼을 가득 채우도록 너비 조절 */
+    height: 30px; /* 작은 화면에서 버튼 높이 조절 */
+  }
+  .Capturebtn {
+    padding: 5px 10px; /* 작은 화면에서 버튼 내용 안쪽 간격 조절 */
+  }
+}
