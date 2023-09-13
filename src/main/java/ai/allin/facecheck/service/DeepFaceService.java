@@ -87,10 +87,18 @@ public class DeepFaceService {
         Patient patient = patientService.findPatientByPhoneNum(phoneNum);
 
         if (patient != null) {
-            return patient.getPhoto(); // 환자의 사진 경로를 반환
+            String photoFilename = patient.getPhoto();
+            if (photoFilename != null && !photoFilename.isEmpty()) {
+                // 이미지 파일 경로를 구성
+                String imageFilePath = "/Users/segene/MediFace/src/main/resources/static/images/" + photoFilename;
+
+                // 이미지 파일 경로를 반환
+                return imageFilePath;
+            }
         }
 
-        return null; // 환자가 없을 경우 null 반환 또는 예외 처리
+        return null; // 환자가 없거나 이미지 경로를 찾을 수 없는 경우 null 반환 또는 예외 처리
     }
+
 
 }
