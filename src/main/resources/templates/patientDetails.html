@@ -1,0 +1,34 @@
+<!-- patientDetails.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Details</title>
+</head>
+<body>
+<h2>Patient Details</h2>
+<!-- Add a link to the registration form -->
+<a href="/register">Register New Patient</a>
+<br><br>
+<!-- Display the list of patients -->
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>image</th>
+    </tr>
+    <tr th:each="patient : ${patients}">
+        <td th:text="${patient.id}"></td>
+        <td th:text="${patient.name}"></td>
+        <td th:text="${patient.phoneNum}"></td>
+        <td>
+            <img th:src="@{/images/} + ${patient.photo}" width="100" height="100">
+        </td>
+        <td>
+            <a th:href="@{/delete/{id}(id=${patient.id})}" onclick="return confirm('정말 삭제하시겠습니까?')">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

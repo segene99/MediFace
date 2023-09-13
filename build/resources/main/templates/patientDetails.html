@@ -1,0 +1,27 @@
+<!-- patientDetails.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Details</title>
+</head>
+<body>
+<h2>Patient Details</h2>
+<!-- Add a link to the registration form -->
+<a href="/myapp/patients/register">Register New Patient</a>
+<br><br>
+<!-- Display the list of patients -->
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone Number</th>
+    </tr>
+    <tr th:each="patient : ${patients}">
+        <td th:text="${patient.id}"></td>
+        <td th:text="${patient.name}"></td>
+        <td th:text="${patient.phoneNum}"></td>
+    </tr>
+</table>
+</body>
+</html>
