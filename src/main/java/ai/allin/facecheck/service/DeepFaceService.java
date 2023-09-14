@@ -61,6 +61,19 @@ public class DeepFaceService {
     public Map<String, Object> verifyImage(String img1Path, String img2Path) {
         try {
             // verifyImage용 URL 생성
+
+            // Check if imgPath starts and ends with single quotes
+            if (img1Path.startsWith("'") && img1Path.endsWith("'")) {
+                // Remove the single quotes from the beginning and end
+                img1Path = img1Path.substring(1, img1Path.length() - 1);
+            }
+            // Check if imgPath starts and ends with single quotes
+            if (img2Path.startsWith("'") && img2Path.endsWith("'")) {
+                // Remove the single quotes from the beginning and end
+                img2Path = img2Path.substring(1, img2Path.length() - 1);
+            }
+
+
             String verifyUrl = API_URL + "/verify";
 
 
@@ -88,19 +101,16 @@ public class DeepFaceService {
         }
     }
 
-    // 이미지 경로를 가져오는 메서드
-    public String getPatientImagePathByPhoneNum(String phoneNum) {
+    // 이미지값을 phonenum으로 가져오는 메서드
+    public String getPatientImageByPhoneNum(String phoneNum) {
         // phoneNum을 사용하여 환자를 DB에서 검색
         Patient patient = patientService.findPatientByPhoneNum(phoneNum);
 
         if (patient != null) {
             String photoFilename = patient.getPhoto();
             if (photoFilename != null && !photoFilename.isEmpty()) {
-                // 이미지 파일 경로를 구성
-                String imageFilePath = "/Users/segene/MediFace/src/main/resources/static/images/" + photoFilename;
-
                 // 이미지 파일 경로를 반환
-                return imageFilePath;
+                return photoFilename;
             }
         }
 

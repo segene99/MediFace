@@ -3,7 +3,6 @@ package ai.allin.facecheck.controller;
 import ai.allin.facecheck.model.Patient;
 import ai.allin.facecheck.service.DeepFaceService;
 import ai.allin.facecheck.service.PatientService;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 //환자 정보를 웹 인터페이스를 통해 등록하고 삭제하기 위한 컨트롤러 클래스
 @Controller
@@ -36,13 +33,13 @@ public class PatientController {
     // 환자 이미지 분석 페이지 호출
     @GetMapping("/analyzeForm")
     public String showAnalyzeForm() {
-        return "analyze"; // Name of the HTML file
+        return "patientAnalyze"; // Name of the HTML file
     }
 
     // 환자 등록인증 페이지 호출
     @GetMapping("/verifyForm")
     public String showVerifyForm() {
-        return "patientCheck"; // Name of the HTML file
+        return "patientVerify"; // Name of the HTML file
     }
 
 
@@ -77,7 +74,7 @@ public class PatientController {
         Map<String, Object> analysisResult = deepFaceService.analyzeImage(imgPath);
         model.addAttribute("results", analysisResult.get("results"));
 
-        return "AnalysisResult";
+        return "patientAnalysisResult";
     }
 
     // 환자id로 이미지경로 찾기
@@ -93,7 +90,7 @@ public class PatientController {
     @PostMapping("/verify")
     public String verifyImage(@RequestParam String phoneNum, @RequestParam String photo, Model model) {
         // 이미지 경로를 서비스를 통해 가져오기
-        String img1Path = deepFaceService.getPatientImagePathByPhoneNum(phoneNum);
+        String img1Path = deepFaceService.getPatientImageByPhoneNum(phoneNum);
 
         if (img1Path == null) {
             model.addAttribute("error", "Patient not found for the given phone number");
