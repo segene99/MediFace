@@ -26,3 +26,6 @@ create table patients (
 
 # 참고
 software architecture: https://sac4686.tistory.com/15
+
+#개발과정
+2023.09.14 Face Attribute Analysis 기능구현. 웹서버와 분석기능을 수행하는 model서버를 분리 후, JSON으로 데이터 전송/반환
