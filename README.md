@@ -15,7 +15,7 @@ CREATE DATABASE facecheck;
 create table patients (
   seq INT auto_increment primary key,
   name varchar(255) not null,
-  phone varchar(255) not null,
+  phone longtext(255) not null,
   photo varchar(255) not null,
   created timestamp default current_timestamp
 );
