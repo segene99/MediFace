@@ -28,11 +28,3 @@ create table patients (
 software architecture: https://sac4686.tistory.com/15
 
 
-<br/><br/><br/>
-
-#### 개발일지(segene)
-2023.09.08 MVC 5 Layered 구조세팅 
-<br/>
-2023.09.11 환자등록/삭제/조회 기능구현
-<br/>
-2023.09.14 Face Attribute Analysis 기능구현, Face recognition 기능구현
