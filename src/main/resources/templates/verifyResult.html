@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Verification Result</title>
+</head>
+<body>
+<h1>Verification Result</h1>
+
+<div th:if="${result.verified}">
+  <p>인증성공</p>
+</div>
+<div th:unless="${result.verified}">
+  <p>인증실패</p>
+  <div><a href="/verifyForm">재시도</a></div>
+</div>
+
+<pre th:text="${result}"></pre>
+</body>
+</html>
+

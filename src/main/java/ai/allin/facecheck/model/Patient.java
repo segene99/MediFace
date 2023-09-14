@@ -22,7 +22,7 @@ public class Patient {
     @Column(name = "phone") // 엔티티 클래스의 필드와 데이터베이스 열을 연결
     private String phoneNum; // phone 열로 변경
 
-    @Column(name = "photo")
+    @Column(name = "photo", columnDefinition = "LONGTEXT")
     private String photo;
 
     public String getPhoto() {

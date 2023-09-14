@@ -18,11 +18,6 @@ public class PatientService {
         this.patientRepository = patientRepository;
     }
 
-//    public Patient getPatientById(Long seq) {
-//        // 환자 일련번호(seq)를 사용하여 환자 정보 조회
-//        return patientRepository.findById(seq).orElse(null);
-//    }
-
     public List<Patient> getAllPatients() {
         // 모든 환자 정보를 조회
         return patientRepository.findAll();
@@ -42,5 +37,19 @@ public class PatientService {
     public Patient getPatientById(Long id) {
         Optional<Patient> patientOptional = patientRepository.findById(id);
         return patientOptional.orElse(null);
+    }
+
+    public String findImageFilenameByPatientId(String patientId) {
+        Optional<Patient> patientOptional = patientRepository.findById(Long.valueOf(patientId));
+
+        if (patientOptional.isPresent()) {
+            return patientOptional.get().getPhoto();
+        }
+
+        return null;
+    }
+
+    public Patient findPatientByPhoneNum(String phoneNum) {
+        return patientRepository.findByPhoneNum(phoneNum);
     }
 }
