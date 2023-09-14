@@ -1,0 +1,28 @@
+<!-- patientRegistration.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Registration</title>
+    <script src="camera.js"></script>
+</head>
+<body>
+<h2>Patient Check</h2>
+<a href="/">go back to main</a>
+
+<video id="video" width="640" height="480" autoplay></video>
+<button id="snap">Snap Photo</button> <!-- Add the "Snap Photo" button here -->
+<canvas id="canvas" width="640" height="480"></canvas>
+
+<form method="post" action="/verify">
+
+    <label for="phoneNum">Phone Number:</label>
+    <input type="text" id="phoneNum" name="phoneNum" required><br><br>
+
+    <input type="hidden" id="photo" name="photo"> <!-- Moved inside the form -->
+
+    <input type="submit" value="verify">
+</form>
+
+</body>
+</html>

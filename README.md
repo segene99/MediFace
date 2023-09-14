@@ -27,11 +27,4 @@ create table patients (
 # 참고
 software architecture: https://sac4686.tistory.com/15
 
-<br/><br/><br/>
 
-#### 개발일지(segene)
-2023.09.08 MVC 5 Layered 구조세팅 
-<br/>
-2023.09.11 환자등록/삭제/조회 기능구현
-<br/>
-2023.09.14 Face Attribute Analysis 기능구현. 웹서버와 분석기능을 수행하는 model서버를 분리 후, JSON으로 데이터 전송/반환
