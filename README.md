@@ -27,7 +27,7 @@ create table patients (
 # 참고
 software architecture: https://sac4686.tistory.com/15
 
-&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 #### 개발일지(segene)
 2023.09.08 MVC 5 Layered 구조세팅
 2023.09.11 환자등록/삭제/조회 기능구현
