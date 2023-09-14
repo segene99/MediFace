@@ -55,7 +55,20 @@ public class PatientController {
         }
 
         // 환자 ID를 기반으로 이미지 경로를 찾는 로직
-        String imgPath = findImagePathByPatientId(Long.valueOf(patientId)); // Convert String to Long
+//        String imgPath = findImagePathByPatientId(Long.valueOf(patientId)); // Convert String to Long
+      //환자 id를 기반으로 photo컬럼 값 가져오기
+        String imgPath = patientService.findImageFilenameByPatientId(patientId); // Convert String to Long
+
+        //path 확인작업
+        if (imgPath != null && imgPath.length() >= 6) {
+            String firstThree = imgPath.substring(0, 3);
+            String lastThree = imgPath.substring(imgPath.length() - 3);
+            System.out.println("First 3 characters: " + firstThree);
+            System.out.println("Last 3 characters: " + lastThree);
+        } else {
+            System.out.println("Invalid imgPath: " + imgPath);
+        }
+
         if (imgPath == null || imgPath.isEmpty()) {
             model.addAttribute("message", "Image not found for given patientId");
             return "error"; // 에러 페이지를 만들어서 사용할 수도 있음
@@ -126,6 +139,7 @@ public class PatientController {
             String[] parts = patient.getPhoto().split(",");
             if (parts.length == 2) {
                 String base64Image = parts[1];
+                String base64encoded = patient.getPhoto();
                 byte[] imageBytes = Base64.getDecoder().decode(base64Image);
 
                 // Generate a unique filename
@@ -144,7 +158,10 @@ public class PatientController {
                 Files.write(imagePath, imageBytes);
 
                 // Store the filename in the patient object, so it can be saved in the database
-                patient.setPhoto(filename);
+//                patient.setPhoto(filename);
+
+                //set photo as base64 encoded strings
+                patient.setPhoto(base64encoded);
             }
         } else {
             System.out.println("Photo data is null or empty.");

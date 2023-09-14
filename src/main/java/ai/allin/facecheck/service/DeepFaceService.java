@@ -24,11 +24,18 @@ public class DeepFaceService {
 
     public Map<String, Object> analyzeImage(String imgPath) {
         try {
+            // Check if imgPath starts and ends with single quotes
+            if (imgPath.startsWith("'") && imgPath.endsWith("'")) {
+                // Remove the single quotes from the beginning and end
+                imgPath = imgPath.substring(1, imgPath.length() - 1);
+            }
+
             // analyzeImage용 URL 생성
             String analyzeUrl = API_URL + "/analyze";
 
             // 요청 데이터 생성
             Map<String, Object> requestMap = new HashMap<>();
+
             requestMap.put("img_path", imgPath);
             requestMap.put("actions", List.of("age", "gender", "emotion", "race"));
 
@@ -40,9 +47,9 @@ public class DeepFaceService {
             headers.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<String> entity = new HttpEntity<>(requestBody.toString(), headers);
 
-            System.out.println("=========어떤거 보내니?====" + requestBody);
+            System.out.println("=========어떤거 보내니?====");
             ResponseEntity<Map> response = restTemplate.exchange(analyzeUrl, HttpMethod.POST, entity, Map.class);
-            System.out.println("=========어떤거 받니?====" + response);
+            System.out.println("=========어떤거 받니?====");
             return response.getBody();
 
         } catch (RestClientException e) {
