@@ -30,7 +30,7 @@ public class PatientController {
 
     }
 
-    // 환자 이미지 분석 페이지 호출
+    // 환자 표정분석 페이지 호출
     @GetMapping("/analyzeForm")
     public String showAnalyzeForm() {
         return "patientAnalyze"; // Name of the HTML file
@@ -40,6 +40,12 @@ public class PatientController {
     @GetMapping("/verifyForm")
     public String showVerifyForm() {
         return "patientVerify"; // Name of the HTML file
+    }
+
+    // 환자 본인확인 페이지 호출
+    @GetMapping("/recognizeForm")
+    public String showRecognizeForm() {
+        return "patientRecognize"; // Name of the HTML file
     }
 
 
@@ -53,7 +59,7 @@ public class PatientController {
 
         // 환자 ID를 기반으로 이미지 경로를 찾는 로직
 //        String imgPath = findImagePathByPatientId(Long.valueOf(patientId)); // Convert String to Long
-      //환자 id를 기반으로 photo컬럼 값 가져오기
+        //환자 id를 기반으로 photo컬럼 값 가져오기
         String imgPath = patientService.findImageFilenameByPatientId(patientId); // Convert String to Long
 
         //path 확인작업
@@ -77,15 +83,6 @@ public class PatientController {
         return "patientAnalysisResult";
     }
 
-    // 환자id로 이미지경로 찾기
-    private String findImagePathByPatientId(Long patientId) {  // Change parameter type to Long
-        String filename = patientService.findImageFilenameByPatientId(String.valueOf(patientId));
-        if (filename == null || filename.isEmpty()) {
-            return null;
-        }
-        return Paths.get("/Users/segene/MediFace/src/main/resources/static/images", filename).toString();
-    }
-
     //환자 등록여부 검증
     @PostMapping("/verify")
     public String verifyImage(@RequestParam String phoneNum, @RequestParam String photo, Model model) {
@@ -106,6 +103,19 @@ public class PatientController {
         return "verifyResult"; // 결과 페이지로 이동
     }
 
+
+    //환자 등록여부 검증
+    @PostMapping("/recognize")
+    public String recognizeImage(@RequestParam String photo, Model model) {
+
+        // 이미지 확인 작업을 서비스를 통해 수행
+        Map<String, Object> recognitionResult = deepFaceService.recognizeImage(photo);
+
+        // 결과를 모델에 추가
+        model.addAttribute("result", recognitionResult);
+
+        return "patientRecognitionResult"; // 결과 페이지로 이동
+    }
 
     //메인페이지
     @GetMapping("/")
@@ -169,8 +179,6 @@ public class PatientController {
 
         return "redirect:/list";
     }
-
-    //환자 수정
 
 
     //환자 삭제

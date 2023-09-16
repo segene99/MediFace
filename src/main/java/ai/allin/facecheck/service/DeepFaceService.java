@@ -101,6 +101,45 @@ public class DeepFaceService {
         }
     }
 
+
+    public Map<String, Object> recognizeImage(String photo){
+        try{
+            // Check if imgPath starts and ends with single quotes
+            if (photo.startsWith("'") && photo.endsWith("'")) {
+                // Remove the single quotes from the beginning and end
+                photo = photo.substring(1, photo.length() - 1);
+            }
+
+            java.lang.String recognizeUrl = API_URL + "/find";
+
+            //customize your db path
+            String dbPath = "/Users/segene/MediFace/src/main/resources/static/images";
+
+            // 요청 데이터 생성
+            Map<java.lang.String, java.lang.Object> requestMap = new HashMap<>();
+            requestMap.put("img_path", photo);
+            requestMap.put("db_path", dbPath);
+            requestMap.put("model_name", "VGG-Face");
+            requestMap.put("distance_metric", "cosine");
+            requestMap.put("detector_backend", "opencv");
+            requestMap.put("normalization", "base");
+
+            // 요청 JSON 데이터를 직접 생성
+            JSONObject requestBody = new JSONObject(requestMap);
+
+            // API 호출
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<java.lang.String> entity = new HttpEntity<>(requestBody.toString(), headers);
+
+            ResponseEntity<Map> response = restTemplate.exchange(recognizeUrl, HttpMethod.POST, entity, Map.class);
+            return response.getBody();
+        } catch (RestClientException e) {
+            // 오류 처리 및 로깅
+            throw new RuntimeException("외부 API 호출 중 오류가 발생했습니다.", e);
+        }
+    }
+
     // 이미지값을 phonenum으로 가져오는 메서드
     public String getPatientImageByPhoneNum(String phoneNum) {
         // phoneNum을 사용하여 환자를 DB에서 검색
@@ -116,6 +155,4 @@ public class DeepFaceService {
 
         return null; // 환자가 없거나 이미지 경로를 찾을 수 없는 경우 null 반환 또는 예외 처리
     }
-
-
 }
