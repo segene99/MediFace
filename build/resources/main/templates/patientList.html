@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>MediFace</title>
+</head>
+<body>
+<header>
+    <h1>MediFace</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="/">홈으로</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="content">
+        <table>
+            <tr>
+                <th>진료순번</th>
+                <th>이름</th>
+                <th>전화번호</th>
+            </tr>
+            <tr th:each="patient : ${patients}">
+                <td th:text="${patient.id}"></td>
+                <td th:text="${patient.name}"></td>
+                <td>
+                    <!-- Display phoneNum with middle part hidden -->
+                    <span th:text="${patient.phoneNum.substring(0, 4) + '-****-' + patient.phoneNum.substring(9)}"></span>
+                </td>
+            </tr>
+        </table>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2023 My Mobile App</p>
+</footer>
+</body>
+</html>

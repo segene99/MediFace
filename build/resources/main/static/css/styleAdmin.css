@@ -1,0 +1,91 @@
+/* Reset some default styles for consistency */
+body, h1, h2, p, ul, li, button {
+    font-size: 30px; /* Adjust the font size as needed */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Basic styling for the mobile app */
+/* Define the pastel-tone green color */
+:root {
+  --pastel-green: #007bff; /* Replace with your preferred pastel green color */
+}
+
+/* Style the button */
+.button {
+    background-color: var(--pastel-green);
+    color: #fff; /* Text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer;
+}
+
+/* Style the header */
+header {
+    background-color: var(--pastel-green);
+    color: #fff; /* Text color */
+    text-align: center;
+    padding: 10px;
+}
+
+/* Style the navigation bar */
+nav {
+    background-color: var(--pastel-green);
+    color: #fff; /* Text color */
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 10px;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+
+main {
+    padding: 20px;
+}
+
+.content {
+    text-align: center;
+    min-height: 300px; /* Adjust the minimum height as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #42a5f5; /* Darker pastel green color when hovered */
+}
+
+footer {
+    background-color: var(--pastel-green);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+a {
+    all: unset;
+    cursor: pointer;
+}
+
