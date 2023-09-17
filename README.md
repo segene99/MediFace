@@ -22,7 +22,7 @@ create table patients (
 
 
 # 백엔드
-- Software Architecture: 5 Layered, MVC
+- Software Architecture: 3 Layered, MVC
 
 # 참고
 software architecture: https://sac4686.tistory.com/15
