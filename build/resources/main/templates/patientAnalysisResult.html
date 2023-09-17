@@ -6,11 +6,19 @@
 </head>
 <body>
 <h1>Analysis Result</h1>
+<a href="/">go back to main</a>
 <p>Age: <span th:text="${results[0].age}"></span></p>
 <p>Dominant Emotion: <span th:text="${results[0].dominant_emotion}"></span></p>
 <p>Dominant Gender: <span th:text="${results[0].dominant_gender}"></span></p>
 <p>Dominant Race: <span th:text="${results[0].dominant_race}"></span></p>
-<!-- 기타 분석 결과 항목을 원하는 대로 추가 -->
+
+<h2>Emotions:</h2>
+<ul>
+    <li th:each="emotion : ${results[0].emotion}">
+        <span th:text="${emotion.key}"></span>: <span th:text="${emotion.value}"></span>
+    </li>
+</ul>
+
 <a href="/">go back to main</a>
 
 </body>

@@ -30,6 +30,11 @@ public class PatientController {
 
     }
 
+    @GetMapping("/admin")
+    public String showAdmin() {
+        return "admin"; // Name of the HTML file
+    }
+
     // 환자 표정분석 페이지 호출
     @GetMapping("/analyzeForm")
     public String showAnalyzeForm() {
@@ -109,7 +114,7 @@ public class PatientController {
     public String recognizeImage(@RequestParam String photo, Model model) {
 
         // 이미지 확인 작업을 서비스를 통해 수행
-        Map<String, Object> recognitionResult = deepFaceService.recognizeImage(photo);
+        String recognitionResult = deepFaceService.recognizeImage(photo);
 
         // 결과를 모델에 추가
         model.addAttribute("result", recognitionResult);
@@ -126,6 +131,13 @@ public class PatientController {
     // 환자 목록 조회
     @GetMapping("/list")
     public String listPatients(Model model) {
+        List<Patient> patients = patientService.getAllPatients();
+        model.addAttribute("patients", patients);
+        return "patientList";
+    }
+
+    @GetMapping("/adminlist")
+    public String listPatientsAdmin(Model model) {
         List<Patient> patients = patientService.getAllPatients();
         model.addAttribute("patients", patients);
         return "patientDetails";

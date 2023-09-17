@@ -2,20 +2,38 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>Verification Result</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>MediFace</title>
 </head>
 <body>
-<h1>Verification Result</h1>
+<header>
+  <h1>MediFace</h1>
+</header>
+<nav>
+  <ul>
+    <li><a href="/">홈으로</a></li>
+  </ul>
+</nav>
+<main>
+  <section class="content">
+    <div th:if="${result.verified}" class="success">
+      <h1>인증성공</h1>
+    </div>
+    <div th:unless="${result.verified}" class="failure">
+      <h1>인증실패</h1>
+      <br>
+      <div><button><a href="/verifyForm">재시도</a></button></div>
+    </div>
 
-<div th:if="${result.verified}">
-  <p>인증성공</p>
-</div>
-<div th:unless="${result.verified}">
-  <p>인증실패</p>
-  <div><a href="/verifyForm">재시도</a></div>
-</div>
 
-<pre th:text="${result}"></pre>
+    <p th:text="${result}"></p>
+  </section>
+</main>
+<footer>
+  <p>&copy; 2023 My Mobile App</p>
+</footer>
 </body>
 </html>
+
 

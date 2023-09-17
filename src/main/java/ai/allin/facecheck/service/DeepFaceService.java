@@ -102,41 +102,30 @@ public class DeepFaceService {
     }
 
 
-    public Map<String, Object> recognizeImage(String photo){
-        try{
-            // Check if imgPath starts and ends with single quotes
-            if (photo.startsWith("'") && photo.endsWith("'")) {
-                // Remove the single quotes from the beginning and end
-                photo = photo.substring(1, photo.length() - 1);
-            }
+    public String recognizeImage(String photo){
+        // Set up the URL
+        String findUrl = API_URL + "/find";
+        String dbPath = "/Users/segene/Documents/segene/workspace/MediFace2/src/main/resources/static/images";
 
-            java.lang.String recognizeUrl = API_URL + "/find";
 
-            //customize your db path
-            String dbPath = "/Users/segene/MediFace/src/main/resources/static/images";
+        // Create headers with the Content-Type set to application/json
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-            // 요청 데이터 생성
-            Map<java.lang.String, java.lang.Object> requestMap = new HashMap<>();
-            requestMap.put("img_path", photo);
-            requestMap.put("db_path", dbPath);
-            requestMap.put("model_name", "VGG-Face");
-            requestMap.put("distance_metric", "cosine");
-            requestMap.put("detector_backend", "opencv");
-            requestMap.put("normalization", "base");
+        // Create a JSON request payload
+        String jsonData = "{\"img_path\":\"" + photo + "\", \"db_path\":\"" + dbPath + "\"}";
 
-            // 요청 JSON 데이터를 직접 생성
-            JSONObject requestBody = new JSONObject(requestMap);
+        // Create an HttpEntity with the headers and JSON data
+        HttpEntity<String> request = new HttpEntity<>(jsonData, headers);
 
-            // API 호출
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            HttpEntity<java.lang.String> entity = new HttpEntity<>(requestBody.toString(), headers);
+        // Make the HTTP POST request and get the response as a ResponseEntity
+        ResponseEntity<String> response = restTemplate.postForEntity(findUrl, request, String.class);
 
-            ResponseEntity<Map> response = restTemplate.exchange(recognizeUrl, HttpMethod.POST, entity, Map.class);
+        // Process the response as needed
+        if (response.getStatusCode().is2xxSuccessful()) {
             return response.getBody();
-        } catch (RestClientException e) {
-            // 오류 처리 및 로깅
-            throw new RuntimeException("외부 API 호출 중 오류가 발생했습니다.", e);
+        } else {
+            return "Error: " + response.getStatusCode();
         }
     }
 

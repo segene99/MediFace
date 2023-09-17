@@ -2,15 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>main</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>MediFace</title>
 </head>
 <body>
-<h2>Patients menu</h2>
-<!-- Add a link to the registration form -->
-<div><a href="/register">Register New Patient</a></div>
-<div><a href="/list">Patient list</a></div>
-<div><a href="/analyzeForm">Analyze Patient Image</a></div>
-<div><a href="/verifyForm">verify Patient Image</a></div>
-
+<header>
+    <h1>MediFace</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="/">홈으로</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="content">
+        <div><button><a href="/register">진료등록</a></button></div>
+        <br>
+        <div><button><a href="/verifyForm">환자본인인증</a></button></div>
+        <!--<div><a href="/analyzeForm"></a></div>-->
+        <!--<div><a href="/recognizeForm">Face recognition</a></div>-->
+    </section>
+</main>
+<footer>
+    <p>&copy; 2023 My Mobile App</p>
+    <a href="/admin">관리자</a>
+</footer>
 </body>
 </html>

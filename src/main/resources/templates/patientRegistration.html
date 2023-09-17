@@ -1,30 +1,44 @@
-<!-- patientRegistration.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Patient Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
     <script src="camera.js"></script>
+    <title>MediFace</title>
 </head>
 <body>
-<h2>Patient Registration</h2>
-<a href="/">go back to main</a>
+<header>
+    <h1>MediFace</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="/">홈으로</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="content">
+        <video id="video" width="640" height="480" autoplay></video>
+        <br>
+        <button id="snap">사진 촬영</button> <!-- Add the "Snap Photo" button here -->
+        <canvas id="canvas" width="640" height="480"></canvas>
+        <br>
+        <form method="post" action="/register">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
 
-<video id="video" width="640" height="480" autoplay></video>
-<button id="snap">Snap Photo</button> <!-- Add the "Snap Photo" button here -->
-<canvas id="canvas" width="640" height="480"></canvas>
+            <label for="phoneNum">Phone Number:</label>
+            <input type="text" id="phoneNum" name="phoneNum" required><br><br>
 
-<form method="post" action="/register">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
+            <input type="hidden" id="photo" name="photo"> <!-- Moved inside the form -->
 
-    <label for="phoneNum">Phone Number:</label>
-    <input type="text" id="phoneNum" name="phoneNum" required><br><br>
-
-    <input type="hidden" id="photo" name="photo"> <!-- Moved inside the form -->
-
-    <input type="submit" value="Register">
-</form>
-
+            <button type="submit" value="Register">진료등록 </button>
+        </form>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2023 My Mobile App</p>
+</footer>
 </body>
 </html>
+

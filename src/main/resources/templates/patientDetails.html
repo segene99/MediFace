@@ -1,36 +1,46 @@
-<!-- patientDetails.html -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Patient Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styleAdmin.css">
+    <title>MediFace</title>
 </head>
 <body>
-<h2>Patient Details</h2>
-<!-- Add a link to the registration form -->
-<a href="/register">Register New Patient</a>
-<a href="/">go back to main</a>
-<br><br>
-<!-- Display the list of patients -->
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Phone Number</th>
-        <th>image</th>
-    </tr>
-    <tr th:each="patient : ${patients}">
-        <td th:text="${patient.id}"></td>
-        <td th:text="${patient.name}"></td>
-        <td th:text="${patient.phoneNum}"></td>
-        <td>
-            <img th:if="${patient.photo != null}" th:src="@{/images/} + ${patient.photo}" width="100" height="100">
-            <img th:if="${patient.photo == null}" th:src="@{/images/default-image.jpg}" width="100" height="100">
-        </td>
-        <td>
-            <a th:href="@{/delete/{id}(id=${patient.id})}" onclick="return confirm('정말 삭제하시겠습니까?')">Delete</a>
-        </td>
-    </tr>
-</table>
+<header>
+    <h1>MediFace - Admin</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="/">홈으로</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="content">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>image</th>
+            </tr>
+            <tr th:each="patient : ${patients}">
+                <td th:text="${patient.id}"></td>
+                <td th:text="${patient.name}"></td>
+                <td th:text="${patient.phoneNum}"></td>
+                <td>
+                    <img th:if="${patient.photo != null}" th:src="@{/images/} + ${patient.photo}" width="100" height="100">
+                    <img th:if="${patient.photo == null}" th:src="@{/images/default-image.jpg}" width="100" height="100">
+                </td>
+                <td>
+                    <button><a th:href="@{/delete/{id}(id=${patient.id})}" onclick="return confirm('정말 삭제하시겠습니까?')">Delete</a></button>
+                </td>
+            </tr>
+        </table>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2023 My Mobile App</p>
+</footer>
 </body>
 </html>

@@ -39,6 +39,7 @@ dependencies {
 	// Multipart support
 	implementation 'org.apache.httpcomponents:httpmime:4.5.13'
 	implementation 'org.json:json:20210307'
+	implementation 'com.squareup.okhttp3:okhttp:4.9.1'  // Check for the latest version if needed.
 
 }
 
